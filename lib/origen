@@ -1,0 +1,109 @@
+// import 'dart:async';
+// import 'dart:convert';
+// import 'package:flutter/material.dart';
+// import 'package:http/http.dart' as http;
+
+// void main() {
+//   runApp(MyApp());
+// }
+
+// class MyApp extends StatefulWidget {
+//   @override
+//   _MyAppState createState() => _MyAppState();
+// }
+
+// class _MyAppState extends State<MyApp> {
+//   double _dollarRate = 0.0;
+//   double _euroRate = 0.0;
+//   double _realAmount = 0.0;
+
+//   Future<void> _fetchExchangeRates() async {
+//     try {
+//       final response = await http
+//           .get(Uri.parse('https://api.exchangeratesapi.io/latest?base=USD'));
+
+//       if (response.statusCode == 200) {
+//         final data = json.decode(response.body);
+//         if (data != null &&
+//             data['rates'] != null &&
+//             data['rates']['BRL'] != null &&
+//             data['rates']['EUR'] != null) {
+//           setState(() {
+//             _dollarRate = data['rates']['BRL'];
+//             _euroRate = data['rates']['EUR'];
+//           });
+//         } else {
+//           // Se os dados da API estiverem incompletos, defina manualmente os valores
+//           _setFallbackValues();
+//         }
+//       } else {
+//         // Se a chamada à API falhar, defina manualmente os valores
+//         _setFallbackValues();
+//       }
+//     } catch (e) {
+//       // Se ocorrer um erro ao chamar a API, defina manualmente os valores
+//       _setFallbackValues();
+//     }
+//   }
+
+//   void _setFallbackValues() {
+//     setState(() {
+//       _dollarRate = 5.20; // Defina manualmente o valor do dólar aqui
+//       _euroRate = 6.20; // Defina manualmente o valor do euro aqui
+//     });
+//   }
+
+//   @override
+//   void initState() {
+//     super.initState();
+//     _fetchExchangeRates();
+//   }
+
+//   void _convertToDollarAndEuro(double amount) {
+//     setState(() {
+//       _realAmount = amount;
+//     });
+//   }
+
+//   @override
+//   Widget build(BuildContext context) {
+//     double dollarAmount = _realAmount / _dollarRate;
+//     double euroAmount = _realAmount / _euroRate;
+
+//     return MaterialApp(
+//       debugShowCheckedModeBanner: false,
+//       home: Scaffold(
+//         appBar: AppBar(
+//           title: Text('Conversor de Moedas'),
+//           backgroundColor: const Color.fromARGB(255, 43, 97, 141),
+//         ),
+//         body: Center(
+          
+//           child: Column(
+//             mainAxisAlignment: MainAxisAlignment.center,
+//             children: <Widget>[
+//               TextField(
+//                 keyboardType: TextInputType.number,
+//                 decoration: InputDecoration(
+//                   labelText: 'Digite o valor em reais',
+//                 ),
+//                 onChanged: (value) {
+//                   _convertToDollarAndEuro(double.tryParse(value) ?? 0.0);
+//                 },
+//               ),
+//               SizedBox(height: 20),
+//               Text('Valor em Dólar: \$${dollarAmount.toStringAsFixed(2)}'),
+//               SizedBox(height: 20),
+//               Text('Valor em Euro: \$${euroAmount.toStringAsFixed(2)}'),
+//             ],
+//           ),
+//         ),
+//       ),
+//     );
+//   }
+// }
+
+// ASYNC ele busca enquanto o programa roda.
+
+
+
