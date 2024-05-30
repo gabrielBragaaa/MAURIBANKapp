@@ -1,0 +1,7 @@
+ATUALIZAR DEPENDENCIAS:
+
+flutter pub get.
+
+GERAR O APK:
+
+flutter build apk --split-per-abi
